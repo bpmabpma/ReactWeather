@@ -14,8 +14,16 @@ module.exports = {
         return res.data.main.temp;
       }
     }, function(res) {
-        debugger;
-      throw new Error(res.response.data.message);
+        var errMsg; 
+
+        if(res.response) {
+            errMsg = res.response.data.message;
+        } else {
+            errMsg = res.message;
+        }
+
+        console.log(errMsg);
+        throw new Error(errMsg);
     });
 
   }
